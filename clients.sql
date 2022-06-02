@@ -31,3 +31,11 @@ telephone VARCHAR(20) NOT NULL
 
 -- voir la description de la table
 DESC nomtable;
+
+-- modifier une table en ajoutant une nouvelle colonne
+-- ajouté après la colonne en mettant AFTER prenom
+ALTER TABLE clients ADD COLUMN postnom VARCHAR(50);
+ALTER TABLE clients ADD COLUMN postnom VARCHAR(50) AFTER prenom;
+
+-- Pour changer la colonne de place
+ALTER TABLE clients MODIFY COLUMN postnom VARCHAR(50) AFTER prenom;
