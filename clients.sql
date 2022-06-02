@@ -57,3 +57,14 @@ ALTER TABLE clients ADD COLUMN age INTEGER(2);
 -- Mise à jour des données
 UPDATE clients SET telephone="0673460986" WHERE id=2;
 UPDATE clients SET telephone="0673460986" ,age=17 WHERE id=2;
+
+-- Supprime en enregistrement
+DELETE FROM clients WHERE id=7;
+
+-- Configurer en sql en mode stricte (si contrainte alors marque erreur)
+-- Valeur pour le mode strict : STRICT_TRANS_TABLES;
+-- verifier le mode de transaction
+SHOW VARIABLES LIKE 'sql_mode'
+
+-- Definir le mode stric pour les transactions
+set sql_mode='STRICT_TRANS_TABLES';
