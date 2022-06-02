@@ -39,3 +39,21 @@ ALTER TABLE clients ADD COLUMN postnom VARCHAR(50) AFTER prenom;
 
 -- Pour changer la colonne de place
 ALTER TABLE clients MODIFY COLUMN postnom VARCHAR(50) AFTER prenom;
+
+-- LMD
+-- Lister "SELECT" les informations de toutes"*" les colonnes de "FROM" la table client
+SELECT * FROM clients; 
+
+-- Insertion des donnés
+INSERT INTO clients(nom,prenom,postnom,email,telephone) values ("Dumortier","Steven","toto","stevendumortier59@gmail.com","0776699550");
+
+--AJouter plusisuers donnés en même temps
+INSERT INTO clients(nom,prenom,postnom,email,telephone) values ("Dumortier","Steven","toto","stevendumortier59@gmail.com","0776699550"),
+("Dumortier","Steven","toto","stevendumortier59@gmail.com","0776699550"),
+("Dumortier","Steven","toto","stevendumortier59@gmail.com","0776699550");
+
+ALTER TABLE clients ADD COLUMN age INTEGER(2);
+
+-- Mise à jour des données
+UPDATE clients SET telephone="0673460986" WHERE id=2;
+UPDATE clients SET telephone="0673460986" ,age=17 WHERE id=2;
