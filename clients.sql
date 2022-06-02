@@ -28,3 +28,6 @@ prenom VARCHAR(50) NOT NULL,
 email VARCHAR(70) NOT NULL,
 telephone VARCHAR(20) NOT NULL
 );
+
+-- voir la description de la table
+DESC nomtable;
