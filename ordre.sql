@@ -14,4 +14,14 @@ SELECT name, manufacturer, price FROM telephones WHERE price BETWEEN 150 AND 200
 
 SELECT id,name, manufacturer, price FROM telephones ORDER by price asc;
 															-- DESC
- SELECT id,name, manufacturer, price FROM telephones ORDER by price DESC, manufacturer DESC;
+SELECT id,name, manufacturer, price FROM telephones ORDER by price DESC, manufacturer DESC;
+
+-- Afficher une colonne correspondant à un calcul
+
+SELECT name, manufacturer,price, units_sold, price*units_sold FROM telephone;
+
+-- Ajouter un alias(surnom) avec "as nomdelalias" à l'affichage du tableau mais ne change pas dans les commandes
+SELECT name, manufacturer,price, units_sold, price*units_sold FROM telephone;
+
+-- Ajouter plusieurs texte entre eux "concat"
+SELECT concat (manufacturer," ",name) as Nom_de_telephone,CONCAT(price," $") as price FROM telephone;
