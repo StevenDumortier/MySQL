@@ -76,3 +76,35 @@ SYSTEM clear;
 SELECT * FROM clients where age>20 ;
 SELECT * FROM clients where age>20 AND prenom=Steven;
 SELECT * FROM clients where age>20 OR prenom=Steven;
+
+
+Create TABLE telephones(
+    id integer not null auto_increment primary key,
+    numero VARCHAR(20) NOT NULL,
+    id_client INTEGER,
+    FOREIGN KEY (id_client)REFERENCES clients(id) on delete set null
+);
+
+--FOREIGN KEY (id_client)REFERENCES clients(id) on delete cascade
+
+
+-- Supprier une colonne  
+Alter table clients drop column telephones;
+
+-- Supprimier une base de données
+drop databases ventes;
+
+-- SUpprimer un tableau
+drop table clients
+
+-- Inserrez les datas dans telephones en fonction des ids de la table client
+insert into telephones(numero,id_client) values (066165161,1), ....
+
+-- join query
+--Afficher tous les numéros de téléphone de tous les clients
+-- Tables sollicités : clients et téléphones
+-- "Join" et "inner join" c'est la même chose
+SELECT clients.prenom, clients.nom, telephones.numero from clients JOIN telephone on clients.id=telephones.id_client;
+
+--exemple avec concat, join
+SELECT CONCAT(clients.prenom," ",clients.nom) AS nom, clients.email,telephones.numero FROM clients JOIN telephones ON clients.id=telephones.id_client WHERE clients.id=1;
