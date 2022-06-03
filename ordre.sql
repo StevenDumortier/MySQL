@@ -32,4 +32,22 @@ Create VIEW v_nom as SELECT concat (manufacturer," ",name) as Nom_de_telephone,C
 -- Voir la view
 SELECT * FROM v_revenu_total;
 
+-- Afficher sans répétition
+SELECT Distinct(manufacturer) from telephone;
+
+-- Compter le nombre d'enregistrement
+SELECT COUNT(*) from telephone;
+
+-- Compte le nombre précis d'une info
+SELECT COUNT(*) from telephone where manifacturer = Apple;
+
+-- Calculter la somme de la colonne avec sum
+SELECT SUM(units_sold) from telephone;
+
+-- Calculer la moyenne de la colonne avec AVG
+SELECT AVG(units_sold) from telephone;
+
+-- Selectionner la valeur la plus élevé de la colonne avec max/min
+SELECT MAX(units_sold) from telephone;
+
 
