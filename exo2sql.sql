@@ -5,7 +5,7 @@ companyName VARCHAR(50) not null,
    firstName varchar(50) not null,
 lastname varchar(50) not null,
 email varchar(50) not null,
-phone varchar(10) not null,
+phone varchar(20) not null,
 adress varchar(50) not null,
     city varchar(50) not null,
     country varchar(50) not null,
@@ -50,11 +50,11 @@ SELECT clients.companyName,  concat(clients.firstName, " ",clients.lastname)as n
 
 -- Afficher les noms et contacts de tous les contacts des clients qui ont sollicité un coaching (affiché les clients /coaching)
 
-SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastName) AS nom, orders.typePresta FROM clients JOIN orders ON clients.id=orders.clientid WHERE typePresta="Coaching";
+SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastName) AS nom, clients.email,clients.phone,clients.adress,clients.zipCode,clients.city,clients.country,orders.typePresta FROM clients JOIN orders ON clients.id=orders.clientid WHERE typePresta="Coaching";
 
 
 -- Afficher les noms et contacts de tous les contacts des clients qui ont sollicité un coaching pour les accompagnements React.js
-SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastName) AS nom, orders.typePresta, orders.designation FROM clients JOIN orders ON clients.id=orders.clientid WHERE typePresta="Coaching" and designation = "Nest.js Techlead";
+SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastName) AS nom,clients.email,clients.phone,clients.adress,clients.zipCode,clients.city,clients.country, orders.typePresta, orders.designation FROM clients JOIN orders ON clients.id=orders.clientid WHERE typePresta="Coaching" and designation = "Nest.js Techlead";
 
 
 -- correct
