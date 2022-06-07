@@ -66,3 +66,9 @@ CREATE TABLE IF NOT EXISTS achats(
   FOREIGN KEY(id_client) REFERENCES clients(id) ON UPDATE CASCADE ON DELETE SET NULL,
   FOREIGN KEY(id_produit) REFERENCES produits(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
+
+-- On peut ajouter un deuxième join on. Après le id=id du premier join
+
+SELECT * FROM clients JOIN achats ON clients.id=achats.id_client JOIN produits ON achats.id_produit=produits.id;
+
+SELECT CONCAT(clients.prenom," ",clients.nom) as client, produits.designation FROM clients JOIN achats ON clients.id=achats.id_client JOIN produits ON achats.id_produit=produits.id;
