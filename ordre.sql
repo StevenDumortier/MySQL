@@ -27,7 +27,7 @@ SELECT name, manufacturer,price, units_sold, price*units_sold FROM telephone;
 SELECT concat (manufacturer," ",name) as Nom_de_telephone,CONCAT(price," $") as price FROM telephone;
 
 -- Création d'une view pour éviter une longue requête car il le fait direct en caché create view v_nomdeview(v par convention) as select...
-Create VIEW v_nom as SELECT concat (manufacturer," ",name) as Nom_de_telephone,CONCAT(price," $") as price FROM telephone;
+Create VIEW v_nom as SELECT concat (manufacturer," ",name) as Nom_de_telephone,CONCAT(price," $") as price FROM telephone from orders;
 
 -- Voir la view
 SELECT * FROM v_revenu_total;

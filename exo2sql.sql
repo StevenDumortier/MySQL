@@ -18,7 +18,7 @@ id integer AUTO_INCREMENT not null PRIMARY key,
 typePresta VARCHAR(30) not null,
    designation varchar(30) not null,
 clientid integer,
-FOREIGN KEY (clientid)REFERENCES clients(id) on delete set null,
+FOREIGN KEY (clientid)REFERENCES clients(id) on delete restrict,
 nbDays integer(3),
 unitPrice integer(10),
 state varchar(1) not null
@@ -46,24 +46,28 @@ values ("Formation","Angular init", 2 ,3 ,1200, "0"),
 
 
 -- => Afficher toutes les formations sollicités par le client M2i formation
-SELECT clients.companyName,  concat(clients.firstName, " ",clients.lastname)as nom,orders.designation as Formation FROM `orders` JOIN clients on clients.id=orders.clientid WHERE clientid=2;
+SELECT clients.companyName, concat(clients.firstName, " ",clients.lastname)as nom,orders.designation as Formation FROM `orders` JOIN clients on clients.id=orders.clientid WHERE clientid=2;
 
--- Afficher les noms et contacts de tous les contacts des clients qui ont sollicité un coaching (affiché les clients /coaching)
+-- Afficher les noms des clients qui ont sollicité un coaching 
 
 SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastName) AS nom, clients.email,clients.phone,clients.adress,clients.zipCode,clients.city,clients.country,orders.typePresta FROM clients JOIN orders ON clients.id=orders.clientid WHERE typePresta="Coaching";
 
 
--- Afficher les noms et contacts de tous les contacts des clients qui ont sollicité un coaching pour les accompagnements React.js
+-- Afficher les noms et contacts des clients qui ont sollicité un coaching pour les accompagnements React.js
 SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastName) AS nom,clients.email,clients.phone,clients.adress,clients.zipCode,clients.city,clients.country, orders.typePresta, orders.designation FROM clients JOIN orders ON clients.id=orders.clientid WHERE typePresta="Coaching" and designation = "Nest.js Techlead";
 
 
 -- correct
 
-Create VIEW v_total5 as SELECT (orders.nbDays*orders.unitPrice) as "totaltaxeexcluded",(orders.nbDays*orders.unitPrice + orders.nbDays*orders.unitPrice*0.2) as totalwithTaxe, orders.id;
+Create VIEW v_total5 as SELECT (orders.nbDays*orders.unitPrice) as "totaltaxeexcluded",(orders.nbDays*orders.unitPrice + orders.nbDays*orders.unitPrice*0.2) as totalwithTaxe, orders.id from orders;
 
-SELECT orders.designation, v_total5.totaltaxeexcluded, v_total5.totalwithTaxe FROM v_total5 JOIN orders ON v_total5.id=orders.id WHERE orders.typePresta = "formation";
 
-SELECT orders.designation, v_total5.totaltaxeexcluded, v_total5.totalwithTaxe, state FROM v_total5 JOIN orders ON v_total5.id=orders.id WHERE orders.state = "2" and v_total5.totaltaxeexcluded >=30000;
+-- Pour chacune des demandes de formation, afficher les prix 
+
+SELECT orders.designation, orders.typePresta, v_total5.totaltaxeexcluded, v_total5.totalwithTaxe FROM v_total5 JOIN orders ON v_total5.id=orders.id WHERE orders.typePresta = "formation";
+
+-- Lister toutes les prestations qui sont confirmés et qui vont rapporter plus 30.000€
+SELECT orders.designation, orders.typePresta, v_total5.totaltaxeexcluded, v_total5.totalwithTaxe, state FROM v_total5 JOIN orders ON v_total5.id=orders.id WHERE orders.state = "2" and v_total5.totaltaxeexcluded >=30000;
 
 
 
